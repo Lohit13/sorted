@@ -11,11 +11,16 @@ import unirest
 
 def editpref(request):
 	if request.user.is_authenticated():
-
 		args = {}
 		args.update(csrf(request))
+		if request.method == "POST":
+
+			
+
+
+
+
 		return render_to_response('pref.html',args)
-		
 	else:
 		return redirect('/')
 
