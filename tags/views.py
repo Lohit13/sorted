@@ -36,6 +36,7 @@ def update(request):
 				curruser.fname = request.POST['fname']
 				curruser.lname = request.POST['lname']
 				curruser.batch = request.POST['batch']
+				curruser.address = request.POST['address']
 				if(request.POST['phno']):
 					curruser.phno = request.POST['phno']
 				curruser.email = request.user.email
@@ -64,6 +65,7 @@ def update(request):
 				curruser.fname = request.POST['fname']
 				curruser.lname = request.POST['lname']
 				curruser.batch = request.POST['batch']
+				curruser.address = request.POST['address']
 				if(request.POST['phno']):
 					curruser.phno = request.POST['phno']
 				curruser.email = request.user.email
