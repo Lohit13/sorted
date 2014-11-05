@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'social_auth',
     'bootstrapform',
     'bootstrap3',
+    'tags',
 )
 
 MIDDLEWARE_CLASSES = (
