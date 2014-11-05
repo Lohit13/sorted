@@ -3,4 +3,12 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib import auth
 
 def index(request):
-	return render_to_response('index.html')
+	if request.user.is_authenticated():
+		return render_to_response('loggedin.html')
+	else:
+		return render_to_response('index.html')
+
+
+def logout(request):
+	auth_logout(request)
+	return index(request)
