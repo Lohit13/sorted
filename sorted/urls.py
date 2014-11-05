@@ -14,7 +14,8 @@ urlpatterns = patterns('',
     url(r'^logout/', 'sorted.views.logout'),
 
 
-    url(r'^update/', 'tags.views.update', name = 'update')
+    url(r'^update/', 'tags.views.update', name = 'update'),
+    url(r'^editpreferences/', 'tags.views.editpref', name = 'editpref'),
 
 
 )

@@ -9,6 +9,15 @@ BATCH = (
 	('2012','Btech 4th Year'),
 	)
 
+COURSE = (
+	('ECE','ECE'),
+	('CSE','CSE'),
+	)
+
+FOOD = (
+	('Veg',0),
+	('Non-Veg',1),
+	)
 
 class updateform(forms.ModelForm):
 	email = forms.CharField(required = True, widget = forms.TextInput,label = "email ")

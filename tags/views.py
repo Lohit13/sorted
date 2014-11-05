@@ -3,9 +3,23 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib import auth
 from django.http import HttpResponseRedirect, HttpResponse
 from forms import *
+from django.shortcuts import render, redirect
 from django.core.context_processors import csrf
 
 import unirest
+
+
+def editpref(request):
+	if request.user.is_authenticated():
+
+		args = {}
+		args.update(csrf(request))
+		return render_to_response('pref.html',args)
+		
+	else:
+		return redirect('/')
+
+
 
 def update(request):
 	if request.user.is_authenticated():
