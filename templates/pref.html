@@ -1,20 +1,22 @@
 questinaire
 
-<form>
+<form method = 'POST' action = '/editpreferences/'>
+	{%csrf_token%}
 
-	<input list='course'>
-	<datalist id='course'>
+	<input list='cou' name = 'course' enctype="multipart/form-data">
+	<datalist id='cou' >
 		<option value='CSE'>
 		<option value='ECE'>
 	</datalist>
 	<input name = 'sleeptime' type='integer'>
 	<input name = 'waketime'  type='integer'>
 	<input name= 'goout' type = 'integer'>
-	<input list='food'>
-	<datalist id='food'>
+	<input list='foo' name = 'food' enctype="multipart/form-data">
+	<datalist id='foo'>
 		<option value='Non-Veg'>
 		<option value='Veg'>
 	</datalist>
+	<input type = 'submit' value = 'Update preferences'>
 </form>
 
 
