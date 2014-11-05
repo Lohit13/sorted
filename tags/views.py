@@ -13,7 +13,8 @@ def update(request):
 		for i in Userprofile.objects.all():
 			print i.fname
 
-		form = updateform()
+		form = updateform(initial = {'email':request.user.email})
+		form.fields['email'].widget.attrs['readonly'] = True
 
 		if request.method == "POST":
 

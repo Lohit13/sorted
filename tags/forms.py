@@ -11,6 +11,7 @@ BATCH = (
 
 
 class updateform(forms.ModelForm):
+	email = forms.CharField(required = True, widget = forms.TextInput)
 	fname = forms.CharField(required = True, widget = forms.TextInput)
 	lname = forms.CharField(required = True, widget = forms.TextInput)
 	batch = forms.ChoiceField(required = True, choices = BATCH)
@@ -18,4 +19,4 @@ class updateform(forms.ModelForm):
 
 	class Meta:
 		model = Userprofile
-		fields = ('fname','lname','batch','phno')
+		fields = ('email','fname','lname','batch','phno')
