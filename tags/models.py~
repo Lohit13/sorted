@@ -10,16 +10,8 @@ class Userprofile(models.Model):
     phno = models.BigIntegerField(max_length=10, blank=True)
     role = models.BooleanField(default=0)
 
-    def __unicode__(self):
-	return self.fname
-
-
 class Tag(models.Model):
     tagname = models.CharField(max_length=100)
-
-    def __unicode__(self):
-	return self.tagname
-
 
 class Tagset(models.Model):
 	user = models.ForeignKey(Userprofile)
