@@ -10,12 +10,18 @@ import unirest
 def update(request):
 	if request.user.is_authenticated():
 
+		for i in Userprofile.objects.all():
+			print i.fname
+
 		form = updateform(initial = {'email':request.user.email})
 		form.fields['email'].widget.attrs['readonly'] = True
 
 		if request.method == "POST":
 
-
+			print request.POST['fname']
+			print request.POST['lname']
+			print request.POST['batch']
+			print request.POST['phno']
 			try:
 				curruser = Userprofile.objects.get(user = request.user)
 
