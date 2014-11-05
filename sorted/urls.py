@@ -10,6 +10,6 @@ urlpatterns = patterns('',
     url(r'', include('social_auth.urls')),
 
     url(r'^$', 'sorted.views.index', name='home'), #index page
-
+    url(r'^update/', 'tags.views.update', name = 'update')
 
 )
