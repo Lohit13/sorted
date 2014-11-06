@@ -22,22 +22,23 @@ class Tagset(models.Model):
 class Btech1(models.Model):
 	user1 = models.ForeignKey(Userprofile, related_name='1a')
 	user2 = models.ForeignKey(Userprofile, related_name='1b')
+	count = models.IntegerField(max_length = 5,default = 0)
 
 
 class Btech2(models.Model):
 	user1 = models.ForeignKey(Userprofile, related_name='2a')
 	user2 = models.ForeignKey(Userprofile, related_name='2b')
-
+	count = models.IntegerField(max_length = 5,default = 0)
 
 class Btech3(models.Model):
 	user1 = models.ForeignKey(Userprofile, related_name='3a')
 	user2 = models.ForeignKey(Userprofile, related_name='3b')
-
+	count = models.IntegerField(max_length = 5,default = 0)
 
 class Btech4(models.Model):
 	user1 = models.ForeignKey(Userprofile, related_name='4a')
 	user2 = models.ForeignKey(Userprofile, related_name='4b')
-   
+	count = models.IntegerField(max_length = 5,default = 0)
 
  
 

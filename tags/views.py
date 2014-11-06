@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from forms import *
 from django.shortcuts import render, redirect
 from django.core.context_processors import csrf
+import itertools
+from itertools import combinations
 
 import unirest
 
@@ -75,6 +77,95 @@ def editpref(request):
 	else:
 		return redirect('/')
 
+def count(request):
+	master = Tagset.objects.all()
+
+	arr = []
+
+	for i in Userprofile.objects.filter(batch = "2014"):
+		if i.id not in arr:
+			arr.append(i.id)
+
+	arr = [",".join(map(str,comb)) for comb in combinations(arr, 2)]
+
+	for i in arr:
+		a = i[0]
+		b = i[2]
+		print a,b
+		tagset1 = []
+		tagset2 = []
+		for i in Tagset.objects.filter(user = Userprofile.objects.get(id = a)):
+			tagset1.append(i.tag.tagname)
+		for i in Tagset.objects.filter(user = Userprofile.objects.get(id = b)):
+			tagset2.append(i.tag.tagname)
+		countit = len(list(set(tagset1) & set(tagset2)))
+		try:
+			newbtech1 = Btech1.objects.get(user1 = Userprofile.objects.get(id = a),user2 = Userprofile.objects.get(id = b),count = countit )
+		except:
+			newbtech1 = Btech1(user1 = Userprofile.objects.get(id = a),user2 = Userprofile.objects.get(id = b),count = countit )
+			newbtech1.save()
+
+	return redirect('/')
+
+def allocate(request):
+
+	master = Btech1.objects.all()
+
+	a = []
+	b = []
+	c = []
+
+	for i in master:
+		a.append(i.user1.id)
+		b.append(i.user2.id)
+		c.append(i.count)
+
+	print a,b,c
+
+	even = (0 if len(a)%2 else 1) + 1
+	half = (len(a)-1)/2
+	median = sum(sorted(c)[half:half+even])/float(even)
+
+	print median
+
+	for i in range(0,len(c)):
+		c[i]-=median
+		if c[i]<0:
+			c[i]*=(-1)
+
+
+	class match(object):
+		def __init__(self,user1,user2,count):
+			self.user1 = user1
+			self.user2 = user2
+			self.count = count
+
+	table = []
+	for i in range(len(a)):
+		table.append(match(a[i],b[i],c[i]))					
+	table.sort(key = lambda x:x.count)						
+	
+	print "\nall possible combinations : \n"
+	for i in table:
+		print i.user1,i.user2,i.count
+	print "\n\n"
+
+
+	final = []
+
+	while(len(table)):
+		final.append(table[0])
+		usera = table[0].user1
+		userb = table[0].user2
+		table = [j for j in table if j.user1 != usera and j.user2 != userb and j.user1 != userb and j.user2 != userb]
+
+	print "final is\n"
+	for i in final:
+		print i.user1,i.user2,i.count
+
+
+
+	return HttpResponse('done')
 
 
 def update(request):

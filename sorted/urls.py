@@ -16,6 +16,8 @@ urlpatterns = patterns('',
 
     url(r'^update/', 'tags.views.update', name = 'update'),
     url(r'^editpreferences/', 'tags.views.editpref', name = 'editpref'),
+    url(r'^count/', 'tags.views.count', name = 'count'),
+    url(r'^allocate/', 'tags.views.allocate', name = 'allocate'),
 
 
 )
