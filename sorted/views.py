@@ -10,8 +10,25 @@ from tags.models import *
 def index(request):
 	if request.user.is_authenticated():
 		args={}
+		cur = Userprofile.objects.get(user=request.user)
+
 		try:
 			args['cur'] = Userprofile.objects.get(user=request.user)
+			try:
+				partner = allocatedBtech1.objects.get(user1 = cur)
+				args['partner'] = partner
+				args['done'] = 1
+				print "found a"
+			except:
+				try:
+					partner = allocatedBtech1.objects.get(user2 = cur)
+					args['partner'] = partner
+					args['done'] = 1
+					print "found a"
+				except:
+					args['done'] = 0
+					print "not found"
+
 			return render_to_response('loggedin.html',args)
 		except:
 			return redirect('/update')
