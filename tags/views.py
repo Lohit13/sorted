@@ -70,9 +70,6 @@ def editpref(request):
 					currtag = Tagset(user = curruser, tag = Tag.objects.get(tagname = "lowgo"))
 					currtag.save()
 
-			for i in Tagset.objects.filter(user = curruser):
-				print i.tag.tagname
-
 		return render_to_response('pref.html',args)
 	else:
 		return redirect('/')
@@ -91,7 +88,6 @@ def count(request):
 	for i in arr:
 		a = i[0]
 		b = i[2]
-		print a,b
 		tagset1 = []
 		tagset2 = []
 		for i in Tagset.objects.filter(user = Userprofile.objects.get(id = a)):
@@ -120,13 +116,11 @@ def allocate(request):
 		b.append(i.user2.id)
 		c.append(i.count)
 
-	print a,b,c
 
 	even = (0 if len(a)%2 else 1) + 1
 	half = (len(a)-1)/2
 	median = sum(sorted(c)[half:half+even])/float(even)
 
-	print median
 
 	for i in range(0,len(c)):
 		c[i]-=median
@@ -144,12 +138,6 @@ def allocate(request):
 	for i in range(len(a)):
 		table.append(match(a[i],b[i],c[i]))					
 	table.sort(key = lambda x:x.count)						
-	
-	print "\nall possible combinations : \n"
-	for i in table:
-		print i.user1,i.user2,i.count
-	print "\n\n"
-
 
 	final = []
 
@@ -159,13 +147,14 @@ def allocate(request):
 		userb = table[0].user2
 		table = [j for j in table if j.user1 != usera and j.user2 != userb and j.user1 != userb and j.user2 != userb]
 
-	print "final is\n"
 	for i in final:
-		print i.user1,i.user2,i.count
+		try:
+			allocatedBtech1.objects.get(user1 = Userprofile.objects.get(id = i.user1),user2 = Userprofile.objects.get(id = i.user2))
+		except:
+			newone = allocatedBtech1(user1 = Userprofile.objects.get(id = i.user1),user2 = Userprofile.objects.get(id = i.user2))
+			newone.save()
 
-
-
-	return HttpResponse('done')
+	return redirect('/')
 
 
 def update(request):

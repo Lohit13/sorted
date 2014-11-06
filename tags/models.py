@@ -24,6 +24,10 @@ class Btech1(models.Model):
 	user2 = models.ForeignKey(Userprofile, related_name='1b')
 	count = models.IntegerField(max_length = 5,default = 0)
 
+class allocatedBtech1(models.Model):
+	user1 = models.ForeignKey(Userprofile, related_name='1c')
+	user2 = models.ForeignKey(Userprofile, related_name='1d')
+
 
 class Btech2(models.Model):
 	user1 = models.ForeignKey(Userprofile, related_name='2a')
