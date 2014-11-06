@@ -13,7 +13,10 @@ import unirest
 
 def editpref(request):
 	if request.user.is_authenticated():
-		curruser = Userprofile.objects.get(email = request.user.email)
+		try:
+			curruser = Userprofile.objects.get(email = request.user.email)
+		except:
+			return redirect('/update')
 		args = {}
 		args.update(csrf(request))
 		if request.method == "POST":
