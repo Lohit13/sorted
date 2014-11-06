@@ -195,24 +195,20 @@ def update(request):
 				curruser.email = request.user.email
 
 				message = "Hello "+request.POST['fname']+","+"your information has been updated"
-				message = message.replace(' ','+')
-				receiver = request.POST['phno']
-				response = unirest.get("https://site2sms.p.mashape.com/index.php?msg="+ message + "&phone="+ receiver +"&pwd=freesms&uid=8860803480",
-				 headers={
-	    			"X-Mashape-Key": "eaf4vRx8KQmsh3G8S2OgJWmFHKRup103Hhkjsnh2zCKRW67wxp"
-	  				}
-				)			
+				print response	
 
 			except:
 				curruser = Userprofile(user = request.user)
 				message = "Hello "+request.POST['fname']+","+" thank you for registering"
-				message = message.replace(' ','+')
-				receiver = request.POST['phno']
-				response = unirest.get("https://site2sms.p.mashape.com/index.php?msg="+ message + "&phone="+ receiver +"&pwd=freesms&uid=8860803480",
-				 headers={
-	    			"X-Mashape-Key": "eaf4vRx8KQmsh3G8S2OgJWmFHKRup103Hhkjsnh2zCKRW67wxp"
-	  				}
-				)			
+			
+			message = message.replace(' ','+')
+			receiver = request.POST['phno']
+			response = unirest.get("https://site2sms.p.mashape.com/index.php?msg="+ message + "&phone="+ receiver +"&pwd=freesms&uid=8860803480",
+			 headers={
+	    		"X-Mashape-Key": "eaf4vRx8KQmsh3G8S2OgJWmFHKRup103Hhkjsnh2zCKRW67wxp"
+	  			}
+			)	
+
 
 				curruser.fname = request.POST['fname']
 				curruser.lname = request.POST['lname']
