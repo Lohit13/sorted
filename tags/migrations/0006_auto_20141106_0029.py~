@@ -15,10 +15,12 @@ class Migration(migrations.Migration):
             model_name='allocatedbtech1',
             name='user1',
             field=models.ForeignKey(related_name='1c', to='tags.Userprofile'),
+            preserve_default=True,
         ),
         migrations.AlterField(
             model_name='allocatedbtech1',
             name='user2',
             field=models.ForeignKey(related_name='1d', to='tags.Userprofile'),
+            preserve_default=True,
         ),
     ]
