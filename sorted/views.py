@@ -13,7 +13,7 @@ def index(request):
 		try:
 			cur = Userprofile.objects.get(user=request.user)
 		except:
-			return redirect('/')
+			return redirect('/update')
 
 		try:
 			args['cur'] = Userprofile.objects.get(user=request.user)

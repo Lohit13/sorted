@@ -10,11 +10,15 @@ urlpatterns = patterns('',
     url(r'', include('social_auth.urls')),
 
     url(r'^$', 'sorted.views.index', name='home'), #index page
-<<<<<<< HEAD
+
     url(r'^logout/', 'sorted.views.logout'),
 
-=======
-    url(r'^update/', 'tags.views.update', name = 'update')
->>>>>>> d7b48ae0c325d4b870b56c98da7f16cc123fbfe1
+
+    url(r'^update/', 'tags.views.update', name = 'update'),
+    url(r'^editpreferences/', 'tags.views.editpref', name = 'editpref'),
+    url(r'^count/', 'tags.views.count', name = 'count'),
+    url(r'^allocate/', 'tags.views.allocate', name = 'allocate'),
+    url(r'^adminsite/', 'tags.views.adminall', name = 'adminall'),
+
 
 )

@@ -75,17 +75,17 @@ html {
    <div class="host">
     <h1 font-weight="400" align="center">
     {{cur.fname}} {{cur.lname}}</h3><br><br>
-    <h3 font-weight="80">E-mail: {{cur.email}}</h3>
-    <h3 font-weight="80">Phone number: {{cur.phno}}</h3>
-    <h3 font-weight="80">Batch: {{cur.batch}}</h3>
+    <h3 font-weight="80">E-mail: {{cur.email}}</h3><br><br>
+    <h3 font-weight="80">Phone number: {{cur.phno}}</h3><br><br>
+    <h3 font-weight="80">Batch: {{cur.batch}}</h3><br><br>
     <h3 font-weight="80">Allocated room mate:
     {% if done == 0%}
-        NO
+        Pending
     {% else %}
         {{partner.user1.fname}}
     {% endif %}
   </h3>
-    <h3 font-weight="80" align="center">PREFRENCES</h3>
+
    
 
    </div>
