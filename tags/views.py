@@ -160,6 +160,20 @@ def allocate(request):
 	return redirect('/')
 
 
+def adminall(request):
+	if request.user.is_authenticated():
+		try:
+			curruser = Userprofile.objects.get(user = request.user)
+			if curruser.role==1:
+				args['master'] = allocatedBtech1.objects.all()
+				return render_to_response('admin.html',args)
+			else:
+				return redirect('/')
+		except:
+			return redirect('/')
+	else:
+		return redirect('/')
+
 def update(request):
 	if request.user.is_authenticated():
 

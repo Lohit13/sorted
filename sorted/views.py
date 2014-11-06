@@ -10,9 +10,12 @@ from tags.models import *
 def index(request):
 	if request.user.is_authenticated():
 		args={}
-
 		try:
 			cur = Userprofile.objects.get(user=request.user)
+		except:
+			return redirect('/')
+
+		try:
 			args['cur'] = Userprofile.objects.get(user=request.user)
 			try:
 				partner = allocatedBtech1.objects.get(user1 = cur)
