@@ -105,18 +105,19 @@ html {
     <!-- FROM CUMS HERE -->
 <center><br><br><br>
 <div style="margin:0 auto; width:500px;">
+  <h1 font-weight="400" align="center">PREFERENCES</h1>
 <form method = 'POST' action = '/editpreferences/'>
 	{%csrf_token%}
-
-	<input list='cou' name = 'course' class = 'form-control' enctype="multipart/form-data">
+   
+	<input list='cou' name = 'course' class = 'form-control' enctype="multipart/form-data" placeholder = "Course">
 	<datalist id='cou' >
 		<option value='CSE'>
 		<option value='ECE'>
 	</datalist> <br>
-	<input name = 'sleeptime' class = 'form-control'type='integer'><br>
-	<input name = 'waketime'  class = 'form-control'type='integer'><br>
-	<input name= 'goout' class = 'form-control' type = 'integer'><br>
-	<input list='foo' name = 'food' enctype="multipart/form-data" class = 'form-control' >
+	<input name = 'sleeptime' class = 'form-control'type='integer' placeholder = "What time do you sleep ?"><br>
+	<input name = 'waketime'  class = 'form-control'type='integer' placeholder = "What time do you wake up ?"><br>
+	<input name= 'goout' class = 'form-control' type = 'integer' placeholder = "How many time do you go out a week ?"><br>
+	<input list='foo' name = 'food' enctype="multipart/form-data" class = 'form-control' placeholder = "Veg/Non-Veg" >
 	<datalist id='foo'>
 		<option value='Non-Veg'>
 		<option value='Veg'>
