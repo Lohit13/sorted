@@ -143,6 +143,15 @@ def allocate(request):
 	table.sort(key = lambda x:x.count)						
 
 	final = []
+	print "\nall possible combinations : \n"
+	for i in table:
+		print i.user1,i.user2,i.count
+	print "\n\n"
+
+	print "final is\n"
+	for i in final:
+		print i.user1,i.user2,i.count
+
 
 	while(len(table)):
 		final.append(table[0])
@@ -201,15 +210,6 @@ def update(request):
 				curruser = Userprofile(user = request.user)
 				message = "Hello "+request.POST['fname']+","+" thank you for registering"
 			
-			message = message.replace(' ','+')
-			receiver = request.POST['phno']
-			response = unirest.get("https://site2sms.p.mashape.com/index.php?msg="+ message + "&phone="+ receiver +"&pwd=freesms&uid=8860803480",
-			 headers={
-	    		"X-Mashape-Key": "eaf4vRx8KQmsh3G8S2OgJWmFHKRup103Hhkjsnh2zCKRW67wxp"
-	  			}
-			)	
-
-
 				curruser.fname = request.POST['fname']
 				curruser.lname = request.POST['lname']
 				curruser.batch = request.POST['batch']
@@ -217,6 +217,13 @@ def update(request):
 				if(request.POST['phno']):
 					curruser.phno = request.POST['phno']
 				curruser.email = request.user.email
+			message = message.replace(' ','+')
+			receiver = request.POST['phno']
+			response = unirest.get("https://site2sms.p.mashape.com/index.php?msg="+ message + "&phone="+ receiver +"&pwd=freesms&uid=8860803480",
+			 headers={
+	    		"X-Mashape-Key": "eaf4vRx8KQmsh3G8S2OgJWmFHKRup103Hhkjsnh2zCKRW67wxp"
+	  			}
+			)	
 
 			curruser.save()
 		args = {}
